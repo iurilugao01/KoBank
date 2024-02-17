@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <script type="module" src="../dist/index.js" defer></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-700 text-white">
+    <div class="w-full h-16 flex justify-center items-center bg-black">
+      <p class="text-3xl mr-40 text-yellow-500">BANCO</p>
+
+      <a href="home.index.html" class="ml-40 text-yellow-500">Home</a>
+
+      <a href="transactions.index.html" class="ml-5 text-yellow-500">
+        Transacoes
+      </a>
+
+      <a href="help.index.html" class="ml-5 text-yellow-500">Ajuda</a>
+    </div>
+    <div class="flex justify-center rounded-md m-24 h-96 bg-black">
+      <div class="m-16 h-80">
+        <h2>Seu saldo:</h2>
+        <h3 id="money">5000</h3>
+
+        <label for="value">insira um valor:</label>
+        <input type="text" id="value" class="text-black" />
+
+        <button id="pay" class="rounded-md w-20 h-8 bg-red-800">Pagar</button>
+        <button id="receive" class="rounded-md w-20 h-8 bg-green-800">
+          Receber
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
