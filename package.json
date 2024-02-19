@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack build --watch",
+    "tailwind": "npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch"
   },
-  "author": "",
+  "author": "Iuri",
   "license": "ISC",
-  "dependencies": {
-    "tailwind": "^4.0.0"
-  },
   "devDependencies": {
     "webpack": "^5.90.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "tailwind": "^4.0.0"
   }
 }

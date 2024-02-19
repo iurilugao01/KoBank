@@ -1,6 +1,6 @@
-transactions = [];
+const transactions = [];
 
-const refresh = () => {
+const updateTransactionsList = () => {
   transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
   const ul = document.querySelector("#transactionsList");
@@ -14,14 +14,18 @@ const refresh = () => {
   });
 };
 
-const clean = () => {
+const cleanTransactionList = () => {
   transactions = [];
 
   document.querySelector("#transactionsList").innerHTML = "";
   localStorage.removeItem("transactions");
 };
 
-document.querySelector("#refreshBtn").addEventListener("click", refresh);
-document.querySelector("#cleanBtn").addEventListener("click", clean);
+document
+  .querySelector("#refreshBtn")
+  .addEventListener("click", updateTransactionsList);
+document
+  .querySelector("#cleanBtn")
+  .addEventListener("click", cleanTransactionList);
 
 refresh();
