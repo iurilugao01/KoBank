@@ -27,5 +27,4 @@ export const handleTransaction = (type) => {
   }
 
   console.log(transactions);
-  verification();
 };

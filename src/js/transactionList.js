@@ -1,4 +1,4 @@
-const transactions = [];
+transactions = [];
 
 const updateTransactionsList = () => {
   transactions = JSON.parse(localStorage.getItem("transactions")) || [];
@@ -28,4 +28,4 @@ document
   .querySelector("#cleanBtn")
   .addEventListener("click", cleanTransactionList);
 
-refresh();
+updateTransactionsList;

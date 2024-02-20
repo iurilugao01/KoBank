@@ -7,6 +7,7 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
@@ -15,8 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_validateCurrentMoneyColor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/validateCurrentMoneyColor.js */ \"./src/js/validateCurrentMoneyColor.js\");\n/* harmony import */ var _js_handleTransaction_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/handleTransaction.js */ \"./src/js/handleTransaction.js\");\n/* harmony import */ var _js_transactionList_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/transactionList.js */ \"./src/js/transactionList.js\");\n/* harmony import */ var _js_transactionList_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_transactionList_js__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nif (localStorage.getItem(\"money\") != null) {\n  document.querySelector(\"#money\").innerText = localStorage.getItem(\"money\");\n}\n\ndocument\n  .querySelector(\"#pay\")\n  .addEventListener(\"click\", () => (0,_js_handleTransaction_js__WEBPACK_IMPORTED_MODULE_1__.handleTransaction)(\"pay\"));\ndocument\n  .querySelector(\"#receive\")\n  .addEventListener(\"click\", () => (0,_js_handleTransaction_js__WEBPACK_IMPORTED_MODULE_1__.handleTransaction)(\"receive\"));\n\n(0,_js_validateCurrentMoneyColor_js__WEBPACK_IMPORTED_MODULE_0__.validateCurrentMoneyColor)();\n\n\n//# sourceURL=webpack://banco/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_validateCurrentMoneyColor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/validateCurrentMoneyColor.js */ \"./src/js/validateCurrentMoneyColor.js\");\n/* harmony import */ var _js_handleTransaction_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/handleTransaction.js */ \"./src/js/handleTransaction.js\");\n\n\n\nif (localStorage.getItem(\"money\") != null) {\n  document.querySelector(\"#money\").innerText = localStorage.getItem(\"money\");\n}\n\nconst executeFunctions = (type) => {\n  (0,_js_handleTransaction_js__WEBPACK_IMPORTED_MODULE_1__.handleTransaction)(type);\n  (0,_js_validateCurrentMoneyColor_js__WEBPACK_IMPORTED_MODULE_0__.validateCurrentMoneyColor)();\n};\n\ndocument\n  .querySelector(\"#pay\")\n  .addEventListener(\"click\", () => executeFunctions(\"pay\"));\ndocument\n  .querySelector(\"#receive\")\n  .addEventListener(\"click\", () => executeFunctions(\"receive\"));\n\n(0,_js_validateCurrentMoneyColor_js__WEBPACK_IMPORTED_MODULE_0__.validateCurrentMoneyColor)();\n\n\n//# sourceURL=webpack://banco/./src/index.js?");
 
 /***/ }),
 
@@ -26,18 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleTransaction: () => (/* binding */ handleTransaction)\n/* harmony export */ });\nlet transactions = [];\n\nconst handleTransaction = (type) => {\n  transactions = JSON.parse(localStorage.getItem(\"transactions\")) || [];\n\n  const money = document.querySelector(\"#money\");\n  const valueDig = document.querySelector(\"#value\");\n\n  let newMoney;\n\n  if (type === \"pay\") {\n    newMoney = parseFloat(money.innerText) - parseFloat(valueDig.value);\n    transactions.push(\"pagou \" + valueDig.value);\n  }\n\n  if (type === \"receive\") {\n    newMoney = parseFloat(money.innerText) + parseFloat(valueDig.value);\n    transactions.push(\"recebeu \" + valueDig.value);\n  }\n\n  if (typeof newMoney === \"number\") {\n    money.innerText = newMoney;\n    valueDig.value = null;\n\n    localStorage.setItem(\"money\", money.innerText);\n    localStorage.setItem(\"transactions\", JSON.stringify(transactions));\n  }\n\n  console.log(transactions);\n  verification();\n};\n\n\n//# sourceURL=webpack://banco/./src/js/handleTransaction.js?");
-
-/***/ }),
-
-/***/ "./src/js/transactionList.js":
-/*!***********************************!*\
-  !*** ./src/js/transactionList.js ***!
-  \***********************************/
-/***/ (() => {
-
-eval("const transactions = [];\n\nconst updateTransactionsList = () => {\n  transactions = JSON.parse(localStorage.getItem(\"transactions\")) || [];\n\n  const ul = document.querySelector(\"#transactionsList\");\n  ul.innerHTML = \"\";\n\n  transactions.forEach((element) => {\n    const li = document.createElement(\"li\");\n    li.innerText = JSON.stringify(element);\n\n    ul.appendChild(li);\n  });\n};\n\nconst cleanTransactionList = () => {\n  transactions = [];\n\n  document.querySelector(\"#transactionsList\").innerHTML = \"\";\n  localStorage.removeItem(\"transactions\");\n};\n\ndocument\n  .querySelector(\"#refreshBtn\")\n  .addEventListener(\"click\", updateTransactionsList);\ndocument\n  .querySelector(\"#cleanBtn\")\n  .addEventListener(\"click\", cleanTransactionList);\n\nrefresh();\n\n\n//# sourceURL=webpack://banco/./src/js/transactionList.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleTransaction: () => (/* binding */ handleTransaction)\n/* harmony export */ });\nlet transactions = [];\n\nconst handleTransaction = (type) => {\n  transactions = JSON.parse(localStorage.getItem(\"transactions\")) || [];\n\n  const money = document.querySelector(\"#money\");\n  const valueDig = document.querySelector(\"#value\");\n\n  let newMoney;\n\n  if (type === \"pay\") {\n    newMoney = parseFloat(money.innerText) - parseFloat(valueDig.value);\n    transactions.push(\"pagou \" + valueDig.value);\n  }\n\n  if (type === \"receive\") {\n    newMoney = parseFloat(money.innerText) + parseFloat(valueDig.value);\n    transactions.push(\"recebeu \" + valueDig.value);\n  }\n\n  if (typeof newMoney === \"number\") {\n    money.innerText = newMoney;\n    valueDig.value = null;\n\n    localStorage.setItem(\"money\", money.innerText);\n    localStorage.setItem(\"transactions\", JSON.stringify(transactions));\n  }\n\n  console.log(transactions);\n};\n\n\n//# sourceURL=webpack://banco/./src/js/handleTransaction.js?");
 
 /***/ }),
 
@@ -47,7 +36,6 @@ eval("const transactions = [];\n\nconst updateTransactionsList = () => {\n  tran
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   validateCurrentMoneyColor: () => (/* binding */ validateCurrentMoneyColor)\n/* harmony export */ });\nconst validateCurrentMoneyColor = () => {\n  const currentMoney = document.querySelector(\"#money\");\n  const isNegative = parseFloat(currentMoney.innerText) < 0;\n  const color = isNegative ? \"red\" : \"white\";\n\n  currentMoney.style.color = color;\n};\n\n\n//# sourceURL=webpack://banco/./src/js/validateCurrentMoneyColor.js?");
 
 /***/ })
@@ -79,18 +67,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
