@@ -20,13 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
 
 /***/ }),
 
+/***/ "./src/js/getFormatedDate.js":
+/*!***********************************!*\
+  !*** ./src/js/getFormatedDate.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getFormatedDate: () => (/* binding */ getFormatedDate)\n/* harmony export */ });\nconst getFormatedDate = () => {\n  const atualDate = new Date();\n  const options = {\n    weekday: \"long\",\n    year: \"numeric\",\n    month: \"long\",\n    day: \"numeric\",\n    hour: \"numeric\",\n    minute: \"numeric\",\n    second: \"numeric\",\n    hour12: false,\n    timeZone: \"America/Sao_Paulo\", // Fuso horário de Brasília\n  };\n  return atualDate.toLocaleString(\"pt-BR\", options);\n};\n\n\n//# sourceURL=webpack://banco/./src/js/getFormatedDate.js?");
+
+/***/ }),
+
 /***/ "./src/js/handleTransaction.js":
 /*!*************************************!*\
   !*** ./src/js/handleTransaction.js ***!
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleTransaction: () => (/* binding */ handleTransaction)\n/* harmony export */ });\nlet transactions = [];\n\nconst handleTransaction = (type) => {\n  transactions = JSON.parse(localStorage.getItem(\"transactions\")) || [];\n\n  const money = document.querySelector(\"#money\");\n  const valueDig = document.querySelector(\"#value\");\n\n  let newMoney;\n\n  if (type === \"pay\") {\n    newMoney = parseFloat(money.innerText) - parseFloat(valueDig.value);\n    transactions.push(\"pagou \" + valueDig.value);\n  }\n\n  if (type === \"receive\") {\n    newMoney = parseFloat(money.innerText) + parseFloat(valueDig.value);\n    transactions.push(\"recebeu \" + valueDig.value);\n  }\n\n  if (typeof newMoney === \"number\") {\n    money.innerText = newMoney;\n    valueDig.value = null;\n\n    localStorage.setItem(\"money\", money.innerText);\n    localStorage.setItem(\"transactions\", JSON.stringify(transactions));\n  }\n\n  console.log(transactions);\n};\n\n\n//# sourceURL=webpack://banco/./src/js/handleTransaction.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleTransaction: () => (/* binding */ handleTransaction)\n/* harmony export */ });\n/* harmony import */ var _getFormatedDate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFormatedDate.js */ \"./src/js/getFormatedDate.js\");\n\nlet transactions = [];\n\nconst handleTransaction = (type) => {\n  transactions = JSON.parse(localStorage.getItem(\"transactions\")) || [];\n\n  const money = document.querySelector(\"#money\");\n  const valueDig = document.querySelector(\"#value\");\n\n  let newMoney;\n\n  if (type === \"pay\") {\n    newMoney = parseFloat(money.innerText) - parseFloat(valueDig.value);\n    transactions.push(\n      \"pagou \" + valueDig.value + \" reais\" + \" na \" + (0,_getFormatedDate_js__WEBPACK_IMPORTED_MODULE_0__.getFormatedDate)()\n    );\n  }\n\n  if (type === \"receive\") {\n    newMoney = parseFloat(money.innerText) + parseFloat(valueDig.value);\n    transactions.push(\n      \"recebeu \" + valueDig.value + \" reais\" + \" na \" + (0,_getFormatedDate_js__WEBPACK_IMPORTED_MODULE_0__.getFormatedDate)()\n    );\n  }\n\n  if (typeof newMoney === \"number\") {\n    money.innerText = newMoney;\n    valueDig.value = null;\n\n    localStorage.setItem(\"money\", money.innerText);\n    localStorage.setItem(\"transactions\", JSON.stringify(transactions));\n  }\n};\n\n\n//# sourceURL=webpack://banco/./src/js/handleTransaction.js?");
 
 /***/ }),
 

@@ -28,4 +28,4 @@ document
   .querySelector("#cleanBtn")
   .addEventListener("click", cleanTransactionList);
 
-updateTransactionsList;
+updateTransactionsList();

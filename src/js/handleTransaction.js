@@ -1,3 +1,4 @@
+import { getFormatedDate } from "./getFormatedDate.js";
 let transactions = [];
 
 export const handleTransaction = (type) => {
@@ -10,12 +11,16 @@ export const handleTransaction = (type) => {
 
   if (type === "pay") {
     newMoney = parseFloat(money.innerText) - parseFloat(valueDig.value);
-    transactions.push("pagou " + valueDig.value);
+    transactions.push(
+      "pagou " + valueDig.value + " reais" + " na " + getFormatedDate()
+    );
   }
 
   if (type === "receive") {
     newMoney = parseFloat(money.innerText) + parseFloat(valueDig.value);
-    transactions.push("recebeu " + valueDig.value);
+    transactions.push(
+      "recebeu " + valueDig.value + " reais" + " na " + getFormatedDate()
+    );
   }
 
   if (typeof newMoney === "number") {
@@ -25,6 +30,4 @@ export const handleTransaction = (type) => {
     localStorage.setItem("money", money.innerText);
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }
-
-  console.log(transactions);
 };
